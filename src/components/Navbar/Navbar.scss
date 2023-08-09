@@ -1,0 +1,145 @@
+.navbar{
+    padding: 14px 18px;
+    border-bottom: 1px solid #ddd;
+    .navbar-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1280px;
+        margin: 0 auto;
+        position: relative;
+        .mobile-menu{
+            display: none;
+        }
+        .brand-logo{
+            width: 50px;
+        }
+        .main-content{
+            .dropdown{
+                display: none;
+                position: absolute;
+                width: 100%;
+                left: 0;
+                top: 48px;
+                z-index: 10;
+                padding-top: 20px;
+                h1{
+                    padding: 0;
+                    margin: 4px 0;
+                    font-size: 14px;
+                    font-weight: 600;
+                }
+                ul{
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 2px;
+                    li{
+                        padding: 0;
+                        margin: 0;
+                        font-size: 13px;
+                    }
+                }
+            }
+            .main{
+                margin: 0;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                .active{
+                    font-weight: 600;
+                }
+                li{
+                    padding: 0;
+                    margin: 0;
+                    font-size: 13px;
+                    &:hover{
+                        color: red;
+                    }
+                    &:focus +  .dropdown{
+                        display: block;
+                    }
+                }
+            }
+            
+        }
+        .right-content{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            .desktop-input{
+                background-color: #eceff1;
+                display: flex;
+                align-items: center;
+                padding: 4px 12px;
+                border-radius: 4px;
+                input{
+                    background-color: transparent;
+                    border: none;
+                    outline: none;
+                    font-size: 14px;
+                }
+            }
+            .mobile-input{
+                cursor: pointer;
+                display: none;
+            }
+            .cart{
+                position: relative;
+                .cart-count{
+                    background-color: #0071ae;
+                    position: absolute;
+                    top: -12px;
+                    right: -12px ;
+                    color: white;
+                    width: 20px;
+                    height: 20px;
+                    display: flex;
+                    font-size: 14px;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+
+// 
+@media screen and (min-width : 1290px) {
+    .navbar{
+        padding: 12px 0;
+    }
+}
+
+// mobile input container is disable within 1024px  and mobile input is showing
+@media screen and (max-width : 1024px) {
+    .navbar{
+        .navbar-container{
+            .right-content{
+                .desktop-input{
+                    display: none;
+                }
+                .mobile-input{
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+// mobile menu and main content ares display:none after 767px 
+@media screen and (max-width : 767px) {
+    .navbar{
+        .navbar-container{
+            .mobile-menu{
+                display: block;
+            }
+            .main-content{
+                display: none;
+            }
+        }
+    }
+}
