@@ -19,7 +19,11 @@ const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar-container">
+
+        {/* Mobile menu icon */}
         <CgMenu size={25} onClick={()=>setOpenMenu(true)} className="mobile-menu"/>
+
+        {/* App logo start */}
         <div className="brand-logo">
           <Link href="/">
             <svg viewBox="100 100 50 32" xmlns="http://www.w3.org/2000/svg">
@@ -28,6 +32,9 @@ const Navbar = () => {
             </svg>
           </Link>
         </div>
+        {/* App logo start */}
+
+        {/* Main content which is category menu start */}
         <div className="main-content">
           <ul className="main">
             <Link href="/">
@@ -49,6 +56,8 @@ const Navbar = () => {
               <li>3 STRIPE LIFE</li>
             </Link>
           </ul>
+
+          {/* Dropdown sub mega Menu start */}
           <div className="dropdown">
             <h1>NEW TRENDING</h1>
             <ul>
@@ -60,14 +69,24 @@ const Navbar = () => {
               <li>Shop by Sport</li>
             </ul>
           </div>
+          {/* Dropdown sub mega Menu end */}
+
         </div>
+        {/* Main content which is category menu end*/}
+
+        {/* Right side cart, user, search icon start */}
         <div className="right-content">
+          {/* search option for desktop screen start */}
           <div className="desktop-input">
             <input type="text" placeholder="Search Item" />
             <GrSearch className="cursor-pointer" />
           </div>
+          {/* search option for desktop screen end */}
+
           <LuUser className="cursor-pointer" onClick={()=>setOpenModal(true)} size={20} />
           <GrSearch onClick={()=>setOpenSearch(true)} className="mobile-input" size={20} />
+
+          {/* cart icon start */}
           <Link href="/cart">
             <div className="cart">
               <SlBag  className="cursor-pointer" size={20}/>
@@ -80,7 +99,11 @@ const Navbar = () => {
               }
             </div>
           </Link>
+          {/* cart icon end */}
+
         </div>
+        {/* Right side cart, user, search icon end */}
+
       </div>
       {
         openMenu

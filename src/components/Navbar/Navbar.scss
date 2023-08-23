@@ -1,6 +1,8 @@
 .navbar{
     padding: 14px 18px;
     border-bottom: 1px solid #ddd;
+
+    // navbar container
     .navbar-container{
         display: flex;
         align-items: center;
@@ -8,15 +10,42 @@
         max-width: 1280px;
         margin: 0 auto;
         position: relative;
+
+        // initially mobile menu icon disappear
         .mobile-menu{
             display: none;
         }
+
+        // web site logo
         .brand-logo{
             width: 50px;
         }
         .main-content{
+            
+            .main{
+                margin: 0;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                .active{
+                    font-weight: 600;
+                }
+                li{
+                    padding: 0;
+                    margin: 0;
+                    font-size: 13px;
+                    &:hover ~ .dropdown{
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                }
+            }
             .dropdown{
-                display: none;
+                // display: none;
+                visibility: hidden;
+                opacity: 0;
+                background-color: #666;
                 position: absolute;
                 width: 100%;
                 left: 0;
@@ -39,27 +68,6 @@
                         padding: 0;
                         margin: 0;
                         font-size: 13px;
-                    }
-                }
-            }
-            .main{
-                margin: 0;
-                padding: 0;
-                display: flex;
-                align-items: center;
-                gap: 15px;
-                .active{
-                    font-weight: 600;
-                }
-                li{
-                    padding: 0;
-                    margin: 0;
-                    font-size: 13px;
-                    &:hover{
-                        color: red;
-                    }
-                    &:focus +  .dropdown{
-                        display: block;
                     }
                 }
             }
@@ -107,7 +115,7 @@
     }
 }
 
-// 
+// padding right and left will be 0 when screen size 1290px to max
 @media screen and (min-width : 1290px) {
     .navbar{
         padding: 12px 0;
