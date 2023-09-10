@@ -1,0 +1,16 @@
+.modal{
+    position: relative;
+    .closeIcon{
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #eceff1;
+        cursor: pointer;
+    }
+}

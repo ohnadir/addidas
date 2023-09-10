@@ -3,34 +3,20 @@ import connect from "@/utils/db";
 import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
+    
+    const { name, email, phone, password } = await request.json();
     await connect();
-    const { firstName, lastName, email, phone, password } = await request.json();
+    const newUser = new User({
+        name,
+        email,
+        phone,
+        password
+    });
     try {
-
-        const isEmailExist = await User.findOne({ email : email });
-        if (isEmailExist) {
-            return new NextResponse("Email already taken", {
-                code: 400,
-                status: "failed",
-            });
-        }
-
-        const isPhoneExist = await User.findOne({ phone : phone });
-        if (isPhoneExist) {
-            return new NextResponse("Phone Number already taken", {
-                code: 400,
-                status: "failed"
-            });
-        }
-
-        const newUser = new User({ firstName, lastName, email, phone, password });
         await newUser.save();
-
-        const token = newUser.getJwtToken();
-        return new NextResponse("Registration successfully", {
-            code: 200,
-            status: "success",
-            token : token
+        console.log("Mador")
+        return new NextResponse("User has been created", {
+        status: 201,
         });
 
     } catch (err) {
