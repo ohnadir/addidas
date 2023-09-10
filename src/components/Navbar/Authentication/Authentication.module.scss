@@ -1,16 +1,294 @@
-.modal{
-    position: relative;
-    .closeIcon{
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid #eceff1;
-        cursor: pointer;
+@keyframes show {
+
+    0%{
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+}
+
+@keyframes hide {
+    0%{
+        opacity: 1;
+        transform: translateY(0rem);
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+}
+
+
+
+.modal{ 
+    // modal mask style start
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(1px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    
+    &.active{
+        opacity: 1;
+        visibility: visible;
+    }
+    &.hide{
+        opacity: 0;
+        visibility: hidden;
+    }
+    // modal mask style end
+
+    // modal body
+    .modal_container{
+        animation: hide 0.2s linear;
+        &.active{
+            animation: show 0.2s linear;
+        }
+        &.hide{
+            animation: hide 0.2s linear;
+        }
+
+
+
+        // from style start
+        .form_container{
+
+            // shape style
+            .background{
+                width: 430px;
+                height: 520px;
+                position: absolute;
+                transform: translate(-50%,-50%);
+                left: 50%;
+                top: 50%;
+
+                // it's working when login option in visible
+                .shape{
+                    height: 200px;
+                    width: 200px;
+                    position: absolute;
+                    border-radius: 50%;
+                    &:first-child{
+                        background: linear-gradient(
+                            #1845ad,
+                            #23a2f6
+                        );
+                        left: -50px;
+                        top: -50px;
+                    }
+                    &:last-child{
+                        background: linear-gradient(
+                            to right,
+                            #ff512f,
+                            #f09819
+                        );
+                        right: -50px;
+                        bottom: -50px;
+                    }
+                }
+
+                // it's working when register option in visible
+                .another_shape{
+                    height: 200px;
+                    width: 200px;
+                    position: absolute;
+                    border-radius: 50%;
+                    &:first-child{
+                        background: linear-gradient(
+                            #1845ad,
+                            #23a2f6
+                        );
+                        left: -60px;
+                        top: -100px;
+                    }
+                    &:last-child{
+                        background: linear-gradient(
+                            to right,
+                            #ff512f,
+                            #f09819
+                        );
+                        right: -70px;
+                        bottom: -100px;
+                    }
+                }
+            }
+            form{
+                max-height: 570px !important;
+                max-width: 400px;
+                background-color: rgba(255,255,255,0.13);
+                position: absolute;
+                transform: translate(-50%,-50%);
+                top: 50%;
+                left: 50%;
+                border-radius: 10px;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255,255,255,0.1);
+                padding: 50px 35px;
+                letter-spacing: 0.5px;
+                outline: none;
+                border: none;
+                color: white;
+                .close_menu{   
+                    position: absolute;
+                    width: 100%;
+                    display: flex;
+                    top: 0;
+                    right: 0px;
+                    align-items: flex-end;
+                    justify-content: flex-end;
+                    padding: 5px 5px 5px 0;
+                    .icon{
+                        cursor: pointer;
+                        border: 1px solid white;
+                        border-radius: 50%;
+                        padding: 4px;
+                    }
+                }
+                h3{
+                    font-size: 28px;
+                    font-weight: 500;
+                    line-height: 42px;
+                    text-align: center;
+                }
+                label{
+                    display: block;
+                    margin-top: 25px;
+                    font-size: 16px;
+                    font-weight: 500;
+                }
+                input{
+                    display: block;
+                    height: 42px;
+                    width: 100%;
+                    background-color: rgba(255,255,255,0.07);
+                    border-radius: 3px;
+                    padding: 0 10px;
+                    margin-top: 7px;
+                    font-size: 14px;
+                    font-weight: 300;
+                    border: 1px solid transparent;
+                    outline: none;
+                    &:focus{
+                        border: 1px solid white;
+                    }
+                }
+                ::placeholder{
+                    color: #e5e5e5;
+                }
+                button{
+                    margin-top: 25px;
+                    width: 100%;
+                    background-color: #ffffff;
+                    color: #080710;
+                    height: 42px;
+                    font-size: 18px;
+                    font-weight: 600;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+                .social{
+                    margin-top: 15px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    gap: 10px;
+                    .go, .fa{
+                        width: 150px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 10px;
+                        border-radius: 5px;
+                        height: 42px;
+                        background-color: rgba(255,255,255,0.27);
+                        // color: #eaf0fb;
+                        cursor: pointer;
+                        &:hover{
+                            background-color: rgba(255,255,255,0.47);
+                        }
+                    }
+                }
+                .switch{
+                    width: 100%;
+                    font-size: 12px;
+                    text-align: right;
+                    span{
+                        text-decoration: underline;
+                        cursor: pointer;
+                    }
+                }
+            }
+            
+            
+        }
+        // from style end
+    }
+}
+
+@media screen and (max-width : 400px) {
+    .modal{
+        .modal_container{
+            .form_container{
+
+                // shape style
+                .background{
+                    
+                    // it's working when login option in visible
+                    .shape{
+                        height: 100px;
+                        width: 100px;
+                        &:first-child{
+                            left: 30px;
+                            top: -40px;
+                        }
+                        &:last-child{
+                            right: 30px;
+                            bottom: -30px;
+                        }
+                    }
+
+                    // it's working when register option in visible
+                    .another_shape{
+                        height: 100px;
+                        width: 100px;
+                        &:first-child{
+                            background: linear-gradient(
+                                #1845ad,
+                                #23a2f6
+                            );
+                            left: 20px;
+                            top: -80px;
+                        }
+                        &:last-child{
+                            background: linear-gradient(
+                                to right,
+                                #ff512f,
+                                #f09819
+                            );
+                            right: 20px;
+                            bottom: -80px;
+                        }
+                    }
+                }
+
+                // it's style for form section
+                form{
+                    max-height: 600px !important;
+                    max-width: 300px !important;
+                    .social{
+                        flex-direction: column;
+                        .go, .fa{
+                            width: 250px;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
