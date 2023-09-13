@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import { Modal  } from 'antd';
+import React, { useState } from 'react'
 import { LuUser } from 'react-icons/lu';
 import { RiCloseLine } from 'react-icons/ri';
 import { BsGoogle, BsFacebook } from 'react-icons/bs';
@@ -10,10 +9,10 @@ const Authentication = () => {
     const [Switch, setSwitch] = useState(false);
     const [auth, setAuth] = useState("")
     const onClose=()=>{
-            setHideModal(true)
-            setTimeout(() => {
-                setOpenModal(false)
-            }, 300);
+        setHideModal(true)
+        setTimeout(() => {
+            setOpenModal(false)
+        }, 300);
     }
     const onParentClose=(e)=>{
         if(e.target.id === "wrapper"){
@@ -24,7 +23,6 @@ const Authentication = () => {
         }
     }
     const handleChange=(e)=>{
-        // setAuth(prev=> ({...prev, [e.target.name] : e.target.name }))
         setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
     }
 
