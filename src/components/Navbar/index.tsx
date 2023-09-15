@@ -33,40 +33,96 @@ const Navbar = () => {
 
         {/* Main content which is category menu start */}
         <div className="main-content">
-          <ul className="main">
-            <Link href="/">
-              <li  tabIndex={2} className="active">MEN</li>
-            </Link>
-            <Link href="/">
-              <li className="active">WOMEN</li>
-            </Link>
-            <Link href="/">
-              <li className="active">KIDS</li>
-            </Link>
-            <Link href="/">
-              <li>BACK TO SCHOOL</li>
-            </Link>
-            <Link href="/">
-              <li>SALE</li>
-            </Link>
-            <Link href="/">
-              <li>3 STRIPE LIFE</li>
-            </Link>
+          <ul>
+              <Link href="/">
+                <li>MEN</li>
+              </Link>
+              {/* <Link href="/"> */}
+                <li className="active">WOMEN
+                  <div className="mega-menu">
+                    <div className="mega-menu-container">
+
+                      <div className="fixed-name">
+                        <ul >
+                          <h1>NEW TRENDING</h1>
+                          <li>Boys</li>
+                          <li>Girls</li>
+                          <li>Babies & Toddles</li>
+                          <li>New & Trending</li>
+                          <li>Shop By Age</li>
+                          <li>Shop by Sport</li>
+                        </ul>
+                      </div>
+
+                      <div className="dynamic-category">
+                        <ul>
+                          <h1>SHOES</h1>
+                          <li>Boys</li>
+                          <li>Girls</li>
+                          <li>Babies & Toddles</li>
+                          <li>New & Trending</li>
+                          <li>Shop By Age</li>
+                          <li>Shop by Sport</li>
+                        </ul>
+                        <ul>
+                          <h1>CLOTHING</h1>
+                          <li>Boys</li>
+                          <li>Girls</li>
+                          <li>Babies & Toddles</li>
+                          <li>New & Trending</li>
+                          <li>Shop By Age</li>
+                          <li>Shop by Sport</li>
+                        </ul>
+
+                        <ul>
+                          <h1>SHOP BY SPORTS</h1>
+                          <li>Boys</li>
+                          <li>Girls</li>
+                          <li>Babies & Toddles</li>
+                          <li>New & Trending</li>
+                          <li>Shop By Age</li>
+                          <li>Shop by Sport</li>
+                        </ul>
+                        <ul>
+                          <h1>SHOP BY CATEGORY</h1>
+                          <li>Boys</li>
+                          <li>Girls</li>
+                          <li>Babies & Toddles</li>
+                          <li>New & Trending</li>
+                          <li>Shop By Age</li>
+                          <li>Shop by Sport</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div className="mega-menu-footer">
+                      <div className="mega-menu-footer-container">
+                        <div className="sale">Sale</div>
+                        <ul>
+                          <li>All men&apos;s SHOES</li>
+                          <li>All men&apos;s CLOTHING</li>
+                          <li>ALL men&apos;s SPORTS</li>
+                          <li>ALL men&apos;s CATEGORy</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              {/* </Link> */}
+              <Link href="/">
+                <li>KIDS</li>
+              </Link>
+              <Link href="/">
+                <li>BACK TO SCHOOL</li>
+              </Link>
+              <Link href="/">
+                <li>3 STRIPE LIFE</li>
+              </Link>
+              <Link href="/">
+                <li>SALE</li>
+              </Link>
           </ul>
 
-          {/* Dropdown sub mega Menu start */}
-          <div className="dropdown">
-            <h1>NEW TRENDING</h1>
-            <ul>
-              <li>Boys</li>
-              <li>Girls</li>
-              <li>Babies & Toddles</li>
-              <li>New & Trending</li>
-              <li>Shop By Age</li>
-              <li>Shop by Sport</li>
-            </ul>
-          </div>
-          {/* Dropdown sub mega Menu end */}
+          
 
         </div>
         {/* Main content which is category menu end*/}

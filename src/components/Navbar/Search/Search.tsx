@@ -11,14 +11,12 @@ const Search = () => {
     return (
         <>
             <GrSearch onClick={()=>setOpenSearch(true)} className="" size={20} />
-            <Drawer
-                headerStyle={{"borderBottom": "0px ", "display": "none"}}
-                bodyStyle={{"padding": "0px"}}
-                placement="right"
-                width="100%"
-                onClose={()=>setOpenSearch(false)}
-                open={openSearch}
-                key="right"
+            <div className={style.search_drawer} 
+                style={{
+                    maxWidth :  openSearch ? "100%" : 0,
+                    transformOrigin : "left",
+                    transition : "max-width 0.3s linear"
+                }}
             >
                 <div className={style.header}>
                     <MdOutlineKeyboardArrowLeft className="cursor-pointer p-0 m-0" onClick={()=>setOpenSearch(false)} size={25}/>
@@ -32,7 +30,7 @@ const Search = () => {
                     <p>Some contents...</p>
                     <p>Some contents...</p>
                 </div>
-            </Drawer>
+            </div>
         </>
     )
 }
