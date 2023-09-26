@@ -3,6 +3,7 @@ import { LuUser } from 'react-icons/lu';
 import { RiCloseLine } from 'react-icons/ri';
 import { BsGoogle, BsFacebook } from 'react-icons/bs';
 import style from "./Authentication.module.scss"
+import styled, { keyframes } from 'styled-components';
 
 type AuthType = {
     name?: string;
@@ -14,21 +15,13 @@ const Authentication = () => {
     const [hideModal, setHideModal] = useState<boolean>(false);
     const [Switch, setSwitch] = useState<boolean>(false);
     const [auth, setAuth] = useState<AuthType | null>(null)
-    console.log(auth);
     const onClose=()=>{
         setHideModal(true)
         setTimeout(() => {
             setOpenModal(false)
         }, 300);
     }
-    const onParentClose=(e: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
-        if((e.target as HTMLElement).id === "wrapper"){
-            setHideModal(true)
-            setTimeout(() => {
-                setOpenModal(false)
-            }, 300);
-        }
-    }
+    
     const handleChange=(e: React.ChangeEvent<HTMLInputElement>)=>{
         setAuth(prev =>({...prev, [e.target.name]:e.target.value}))
     }
@@ -69,21 +62,35 @@ const Authentication = () => {
             console.log(err);
         }
     }
+
+    // Example keyframes definition with styled-components
+    const fadeIn = keyframes`
+        0%{
+            opacity: 0;
+            transform: translateY(2rem);
+        }
+        100%{
+            opacity: 1;
+            transform: translateY(0rem);
+        }
+    `;
+
+    const AnimatedDiv = styled.div`
+        animation: ${fadeIn} 0.2s linear;
+    `;
+    
     return (
         <>
             <LuUser id="showDetailBtn" className="cursor-pointer" onClick={()=>setOpenModal(true)} size={20} />
             {
-                // openModal
-                // ? 
                 
-                <div className={ `${style.modal} ${openModal ? style.active : style.hide}`} id="wrapper" onClick={onParentClose}>
-                    <div className={ `${style.modal_container} ${openModal ? style.active : style.hide} ${hideModal ? style.hide : null}`}>
+                <div className={style.modal}
+                    style={{opacity: openModal ? 1 : 0, visibility:openModal ? "visible" : "hidden"}}
+                >
+                    
                         
                         <div className={style.form_container}>
-                            <div className={style.background} >
-                                <div className={Switch ? style.another_shape : style.shape } ></div>
-                                <div className={Switch ? style.another_shape : style.shape } ></div>
-                            </div>
+                            <AnimatedDiv>
                             <form>
 
                                 {/* close icon  */}
@@ -129,20 +136,18 @@ const Authentication = () => {
                                 {
                                     Switch
                                     ?
-                                    <div className={style.switch} >Already Have Account ? <span onClick={()=>setSwitch(false)}>Login</span> </div>
+                                    <div className={style.switch} >Already Have Account ? <span className='cursor-pointer' onClick={()=>setSwitch(false)}>Login</span> </div>
                                     :
-                                    <div className={style.switch}>Create Account ? <span onClick={()=>setSwitch(true)}> Register</span></div>
+                                    <div className={style.switch}>Create Account ? <span className='cursor-pointer' onClick={()=>setSwitch(true)}> Register</span></div>
                                 }
                                 <div className={style.social}>
                                     <div className={style.go}> <BsGoogle/> Google</div>
                                     <div className={style.fa}> <BsFacebook/> Facebook</div>
                                 </div>
                             </form>
+                            </AnimatedDiv>
                         </div>
-                    </div>
                 </div>
-                // :
-                // null
             }
         </>
     )

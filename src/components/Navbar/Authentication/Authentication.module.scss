@@ -35,94 +35,28 @@
     justify-content: center;
     z-index: 10;
     
-    &.active{
+   /*  &.active{
         opacity: 1;
         visibility: visible;
     }
     &.hide{
         opacity: 0;
         visibility: hidden;
-    }
-    // modal mask style end
-
-    // modal body
-    .modal_container{
-        animation: hide 0.2s linear;
-        &.active{
-            animation: show 0.2s linear;
+    } */
+    // animation: hide 0.2s linear;
+        
+        /* &.active{
         }
         &.hide{
             animation: hide 0.2s linear;
-        }
-
-
+        } */
 
         // from style start
         .form_container{
-
-            // shape style
-            .background{
-                width: 430px;
-                height: 520px;
-                position: absolute;
-                transform: translate(-50%,-50%);
-                left: 50%;
-                top: 50%;
-
-                // it's working when login option in visible
-                .shape{
-                    height: 200px;
-                    width: 200px;
-                    position: absolute;
-                    border-radius: 50%;
-                    &:first-child{
-                        background: linear-gradient(
-                            #1845ad,
-                            #23a2f6
-                        );
-                        left: -50px;
-                        top: -50px;
-                    }
-                    &:last-child{
-                        background: linear-gradient(
-                            to right,
-                            #ff512f,
-                            #f09819
-                        );
-                        right: -50px;
-                        bottom: -50px;
-                    }
-                }
-
-                // it's working when register option in visible
-                .another_shape{
-                    height: 200px;
-                    width: 200px;
-                    position: absolute;
-                    border-radius: 50%;
-                    &:first-child{
-                        background: linear-gradient(
-                            #1845ad,
-                            #23a2f6
-                        );
-                        left: -60px;
-                        top: -100px;
-                    }
-                    &:last-child{
-                        background: linear-gradient(
-                            to right,
-                            #ff512f,
-                            #f09819
-                        );
-                        right: -70px;
-                        bottom: -100px;
-                    }
-                }
-            }
             form{
                 max-height: 570px !important;
                 max-width: 400px;
-                background-color: rgba(255,255,255,0.13);
+                background-color: white;
                 position: absolute;
                 transform: translate(-50%,-50%);
                 top: 50%;
@@ -134,7 +68,6 @@
                 letter-spacing: 0.5px;
                 outline: none;
                 border: none;
-                color: white;
                 .close_menu{   
                     position: absolute;
                     width: 100%;
@@ -144,9 +77,10 @@
                     align-items: flex-end;
                     justify-content: flex-end;
                     padding: 5px 5px 5px 0;
+                    color: black;
                     .icon{
                         cursor: pointer;
-                        border: 1px solid white;
+                        border: 1px solid black;
                         border-radius: 50%;
                         padding: 4px;
                     }
@@ -156,18 +90,20 @@
                     font-weight: 500;
                     line-height: 42px;
                     text-align: center;
+                    color: black;
                 }
                 label{
                     display: block;
                     margin-top: 25px;
                     font-size: 16px;
+                    color: black;
                     font-weight: 500;
                 }
                 input{
                     display: block;
                     height: 42px;
                     width: 100%;
-                    background-color: rgba(255,255,255,0.07);
+                    background-color: #eee;
                     border-radius: 3px;
                     padding: 0 10px;
                     margin-top: 7px;
@@ -180,18 +116,21 @@
                     }
                 }
                 ::placeholder{
-                    color: #e5e5e5;
+                    color: black !important;
                 }
                 button{
                     margin-top: 25px;
                     width: 100%;
-                    background-color: #ffffff;
-                    color: #080710;
+                    background-color: #eee;
+                    color: black;
                     height: 42px;
                     font-size: 18px;
                     font-weight: 600;
                     border-radius: 5px;
                     cursor: pointer;
+                    &:hover{
+                        background-color: #dddd;
+                    }
                 }
                 .social{
                     margin-top: 15px;
@@ -207,11 +146,11 @@
                         gap: 10px;
                         border-radius: 5px;
                         height: 42px;
-                        background-color: rgba(255,255,255,0.27);
-                        // color: #eaf0fb;
+                        background-color: #eee;
+                        transition: all 0.3 linear;
                         cursor: pointer;
                         &:hover{
-                            background-color: rgba(255,255,255,0.47);
+                            background-color: #dddd;
                         }
                     }
                 }
@@ -219,64 +158,20 @@
                     width: 100%;
                     font-size: 12px;
                     text-align: right;
+                    color: black
                     span{
                         text-decoration: underline;
                         cursor: pointer;
                     }
                 }
             }
-            
-            
         }
-        // from style end
-    }
+        
 }
 
 @media screen and (max-width : 400px) {
     .modal{
-        .modal_container{
             .form_container{
-
-                // shape style
-                .background{
-                    
-                    // it's working when login option in visible
-                    .shape{
-                        height: 100px;
-                        width: 100px;
-                        &:first-child{
-                            left: 30px;
-                            top: -40px;
-                        }
-                        &:last-child{
-                            right: 30px;
-                            bottom: -30px;
-                        }
-                    }
-
-                    // it's working when register option in visible
-                    .another_shape{
-                        height: 100px;
-                        width: 100px;
-                        &:first-child{
-                            background: linear-gradient(
-                                #1845ad,
-                                #23a2f6
-                            );
-                            left: 20px;
-                            top: -80px;
-                        }
-                        &:last-child{
-                            background: linear-gradient(
-                                to right,
-                                #ff512f,
-                                #f09819
-                            );
-                            right: 20px;
-                            bottom: -80px;
-                        }
-                    }
-                }
 
                 // it's style for form section
                 form{
@@ -289,7 +184,6 @@
                         }
                     }
                 }
-            }
         }
     }
 }
