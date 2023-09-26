@@ -1,27 +1,26 @@
-import User from "@/models/User"
+import User from "../../../../models/User"
 import connect from "@/utils/db";
 import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
     
-    const { name, email, phone, password } = await request.json();
+    const { name, email, password } = await request.json();
     await connect();
-    const newUser = new User({
-        name,
-        email,
-        phone,
-        password
-    });
+   
     try {
-        await newUser.save();
-        console.log("Mador")
-        return new NextResponse("User has been created", {
-        status: 201,
-        });
+        const user = await User.create({name, email, password });
+        return new Response(JSON.stringify({
+            code : 200,
+            status : "User has been created",
+            user: user
+            
+        }));
 
     } catch (err) {
-        return new NextResponse(err.message, {
-            status: 500,
-        });
+        return new Response(JSON.stringify({
+            code : 500,
+            status : err.message,
+            
+        }));
     }
 };

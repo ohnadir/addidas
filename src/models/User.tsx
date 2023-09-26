@@ -1,12 +1,9 @@
 const { mongoose } = require('mongoose');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const { Schema } = mongoose;
 
-const userSchema = new Schema(
+const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
-    phone: { type: String, required: true, trim: true, unique: true },
+    // phone: { type: String, required: true, trim: true, unique: true },
     email: { type: String, required: true, trim: true, unique: true },
     password: { type: String, required: true, trim: true },
     updatedBy: Date,
@@ -20,7 +17,6 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-/*  */
 
 //If the User collection does not exist create a new one.
-export default mongoose.models.User || mongoose.model("User", userSchema);
+export default mongoose.model('User', userSchema);

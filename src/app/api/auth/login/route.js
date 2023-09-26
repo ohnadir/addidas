@@ -1,6 +1,5 @@
-import User from "@/models/User"
+import User from "../../../../models/User"
 import connect from "@/utils/db";
-import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
     await connect();
@@ -8,30 +7,25 @@ export const POST = async (request) => {
     try {
 
         const user = await User.findOne({ email : email });
-        if (user) {
-            return new NextResponse("Incorrect credential", {
-                code: 404,
-                status: "failed",
-            });
+        if (!user) {
+            return new Response(JSON.stringify({
+                code : 404,
+                status : "This Email never user for registration purpose"
+                
+            }));
         }
-
-        const isPasswordMatched = await user.comparePassword(password);
-        if (isPasswordMatched) {
-            return new NextResponse("Incorrect password", {
-                code: 404,
-                status: "failed",
-            });
-        }
-        const token = user.getJwtToken();
-        return new NextResponse("Registration successfully", {
-            code: 200,
-            status: "success",
-            token : token
-        });
+        return new Response(JSON.stringify({
+            code : 200,
+            status : "Login Successfully",
+            user: user
+            
+        }));
 
     } catch (err) {
-        return new NextResponse(err.message, {
-            status: 500,
-        });
+        return new Response(JSON.stringify({
+            code : 500,
+            status : err.message,
+            
+        }));
     }
 };
