@@ -7,10 +7,13 @@ import Link from "next/link";
 import MobileMenu from './MobileMenu'
 import Search from './Search/Search'
 import Authentication from './Authentication'
+import { useState } from "react";
 
 const Navbar = () => {
+  const [openSearch, setOpenSearch] = useState<boolean>(false);
   
-  const cart = false
+  const cart:boolean = false;
+
   return (
     <div className="navbar">
       <div className="navbar-container">
@@ -141,7 +144,7 @@ const Navbar = () => {
           </div>
           
           <div className="mobile-input">
-            <Search/>
+            <Search openSearch={openSearch} setOpenSearch={setOpenSearch} />
           </div>
           
 

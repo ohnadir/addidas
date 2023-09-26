@@ -1,0 +1,29 @@
+.product{
+    .product_container{
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 32px 35px;
+
+        .product_info{
+            position: relative;
+            ul{
+                position: absolute;
+                top: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                li{
+                    // display: inline-block;
+                }
+            }
+            .image_container{
+                
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 20px;
+            }
+        }
+        .product_size{}
+    }
+}

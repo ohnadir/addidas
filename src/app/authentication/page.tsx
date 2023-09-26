@@ -3,37 +3,47 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import "./authentication.css"
 
+type RegisType = {
+    name?: string;
+    email?: string;
+    password?: string;
+}
+
+type LoginType = {
+    email?: string;
+    password?: string;
+}
 
 const Page = () => {
-    const [login, setLogin] = useState("")
-    const [regis, setRegis] = useState("")
-    const [error, setError] = useState(null);
+    const [login, setLogin] = useState<LoginType | null>(null)
+    const [regis, setRegis] = useState<RegisType | null>(null)
+    const [error, setError] = useState<string | null>(null);
 
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
     useEffect(() => {
-        const signUpButton = document.getElementById('signUp');
-        const signInButton = document.getElementById('signIn');
-        const container = document.getElementById('container');
     
         if(signUpButton){
             signUpButton.addEventListener('click', () => {
-                container.classList.add("right-panel-active");
+                (container as HTMLDivElement).classList.add("right-panel-active");
             });
         }
     
         if(signInButton){
             signInButton.addEventListener('click', () => {
-                container.classList.remove("right-panel-active");
+                (container as HTMLDivElement).classList.remove("right-panel-active");
             });
         }
-    }, [])
+    }, [signUpButton, signInButton, container ])
 
-    const handleChangeRegis = (e)=>{
+    const handleChangeRegis = (e: React.ChangeEvent<HTMLInputElement>)=>{
         setRegis(prev=>({...prev, [e.target.name] : e.target.value}))
     }
-    const handleChangeLogin = (e)=>{
+    const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>)=>{
         setLogin(prev=>({...prev, [e.target.name] : e.target.value}))
     }
-    const handleRegisOnSubmit = async(e) => {
+    const handleRegisOnSubmit = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         console.log(regis)
         try {
@@ -45,12 +55,12 @@ const Page = () => {
               body: JSON.stringify(regis)
             });
             console.log(res)
-        } catch (err) {
+        } catch (err : any) {
             setError(err);
             console.log(err);
         }
     }
-    const handleLoginOnSubmit = async(e) => {
+    const handleLoginOnSubmit = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
         try {
             const res = await fetch("/api/auth/login", {
@@ -60,7 +70,7 @@ const Page = () => {
               },
               body: JSON.stringify(login),
             });
-        } catch (err) {
+        } catch (err: any) {
             setError(err);
             console.log(err);
         }

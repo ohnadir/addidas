@@ -6,7 +6,7 @@ import { MdKeyboardArrowRight } from 'react-icons/md';
 import style from "./MobileMenu.module.scss"
 import Link from 'next/link';
 const Menu= () => {
-    const [openMenu, setOpenMenu] = useState(false);
+    const [openMenu, setOpenMenu] = useState<boolean>(false);
     return (
         <>
             <CgMenu className="cursor-pointer" size={25} onClick={()=>setOpenMenu(true)}/>

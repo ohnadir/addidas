@@ -4,12 +4,16 @@ import { GrSearch } from 'react-icons/gr';
 import { MdOutlineKeyboardArrowLeft } from 'react-icons/md';
 import style from "./Search.module.scss"
 
-const Search = () => {
-    const [openSearch, setOpenSearch] = useState(false);
-    const [keyword, setKeyword] = useState("");
+type TypeInterface ={
+    openSearch : boolean,
+    setOpenSearch: (openSearch: boolean) => void
+}
+
+const Search = ({openSearch, setOpenSearch} : TypeInterface) => {
+    const [keyword, setKeyword] = useState<string>("");
     console.log(keyword)
     return (
-        <>
+        <div>
             <GrSearch onClick={()=>setOpenSearch(true)} className="" size={20} />
             <div className={style.search_drawer} 
                 style={{
@@ -31,7 +35,7 @@ const Search = () => {
                     <p>Some contents...</p>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

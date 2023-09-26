@@ -1,29 +1,36 @@
-import React, { useState } from 'react'
+import React, { MouseEventHandler, useState } from 'react'
 import { LuUser } from 'react-icons/lu';
 import { RiCloseLine } from 'react-icons/ri';
 import { BsGoogle, BsFacebook } from 'react-icons/bs';
 import style from "./Authentication.module.scss"
+
+type AuthType = {
+    name?: string;
+    email?: string;
+    password?: string;
+}
 const Authentication = () => {
-    const [openModal, setOpenModal] = useState(false);
-    const [hideModal, setHideModal] = useState(false);
-    const [Switch, setSwitch] = useState(false);
-    const [auth, setAuth] = useState("")
+    const [openModal, setOpenModal] = useState<boolean>(false);
+    const [hideModal, setHideModal] = useState<boolean>(false);
+    const [Switch, setSwitch] = useState<boolean>(false);
+    const [auth, setAuth] = useState<AuthType | null>(null)
+
     const onClose=()=>{
         setHideModal(true)
         setTimeout(() => {
             setOpenModal(false)
         }, 300);
     }
-    const onParentClose=(e)=>{
-        if(e.target.id === "wrapper"){
+    const onParentClose=(e: React.MouseEvent<HTMLDivElement, MouseEvent>)=>{
+        if((e.target as HTMLElement).id === "wrapper"){
             setHideModal(true)
             setTimeout(() => {
                 setOpenModal(false)
             }, 300);
         }
     }
-    const handleChange=(e)=>{
-        setAuth(prev=>({...prev, [e.target.name]:e.target.value}))
+    const handleChange=(e: React.ChangeEvent<HTMLInputElement>)=>{
+        setAuth(prev =>({...prev, [e.target.name]:e.target.value}))
     }
 
     return (
