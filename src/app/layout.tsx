@@ -1,3 +1,4 @@
+import React from "react";
 import Navbar from '@/components/Navbar'
 import './globals.css'
 import type { Metadata } from 'next'
@@ -21,7 +22,6 @@ export default async function RootLayout({
       <body className={inter.className} suppressHydrationWarning={true}>
         <Navbar/>
         {children}
-        
       </body>
     </html>
   )

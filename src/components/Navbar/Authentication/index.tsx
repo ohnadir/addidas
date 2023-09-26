@@ -3,7 +3,6 @@ import { LuUser } from 'react-icons/lu';
 import { RiCloseLine } from 'react-icons/ri';
 import { BsGoogle, BsFacebook } from 'react-icons/bs';
 import style from "./Authentication.module.scss"
-import styled, { keyframes } from 'styled-components';
 
 type AuthType = {
     name?: string;
@@ -12,15 +11,8 @@ type AuthType = {
 }
 const Authentication = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);
-    const [hideModal, setHideModal] = useState<boolean>(false);
     const [Switch, setSwitch] = useState<boolean>(false);
     const [auth, setAuth] = useState<AuthType | null>(null)
-    const onClose=()=>{
-        setHideModal(true)
-        setTimeout(() => {
-            setOpenModal(false)
-        }, 300);
-    }
     
     const handleChange=(e: React.ChangeEvent<HTMLInputElement>)=>{
         setAuth(prev =>({...prev, [e.target.name]:e.target.value}))
@@ -62,22 +54,6 @@ const Authentication = () => {
             console.log(err);
         }
     }
-
-    // Example keyframes definition with styled-components
-    const fadeIn = keyframes`
-        0%{
-            opacity: 0;
-            transform: translateY(2rem);
-        }
-        100%{
-            opacity: 1;
-            transform: translateY(0rem);
-        }
-    `;
-
-    const AnimatedDiv = styled.div`
-        animation: ${fadeIn} 0.2s linear;
-    `;
     
     return (
         <>
@@ -90,12 +66,11 @@ const Authentication = () => {
                     
                         
                         <div className={style.form_container}>
-                            <AnimatedDiv>
                             <form>
 
                                 {/* close icon  */}
                                 <div className={style.close_menu}>
-                                    <RiCloseLine onClick={onClose} className={style.icon} size={27}/>
+                                    <RiCloseLine onClick={()=>setOpenModal(false)} className={style.icon} size={27}/>
                                 </div>
 
                                 {/* this header visible multiple header by user when can change login or register option */}
@@ -145,7 +120,6 @@ const Authentication = () => {
                                     <div className={style.fa}> <BsFacebook/> Facebook</div>
                                 </div>
                             </form>
-                            </AnimatedDiv>
                         </div>
                 </div>
             }
