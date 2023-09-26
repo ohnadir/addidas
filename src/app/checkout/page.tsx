@@ -6,10 +6,24 @@ import { AiFillSafetyCertificate, AiOutlineShoppingCart } from 'react-icons/ai';
 import { BsFillCreditCard2BackFill } from 'react-icons/bs';
 import { IoIosCall } from "react-icons/io"
 
+type AuthType = {
+    first_name?: string;
+    last_name?: string;
+    country?: string;
+    address?: string;
+    city?: string;
+    zipCode?: number;
+    email?: string;
+    phone?: string;
+    order_note?: string;
+    payment_method?: string;
+}
+
+
 const Checkout = () => {
-    const [accordion, setAccordion] = useState(false);
-    const [auth, setAuth] = useState("");
-    const handleChange=(e)=>{
+    const [accordion, setAccordion] = useState<boolean>(false);
+    const [auth, setAuth] = useState<AuthType | null>(null);
+    const handleChange=(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=>{
         setAuth(prev=> ({...prev, [e.target.name] : e.target.value}))
     }
     return (
@@ -124,7 +138,7 @@ const Checkout = () => {
                         </ul>
                         <div className={style.order_note}>
                             <h2>ORDER NOTES (OPTIONAL)</h2>
-                            <textarea onChange={handleChange} name="order_note" id="" cols="30" rows="10" placeholder='Notes about your order, e.g. special notes for delivery'></textarea>
+                            <textarea onChange={handleChange} name="order_note" cols={30} rows={10} placeholder='Notes about your order, e.g. special notes for delivery'></textarea>
                         </div>
                     </div>
                     {/* Order Details card end */}
@@ -132,11 +146,11 @@ const Checkout = () => {
                     {/* payment option start */}
                     <div className={style.payment_method}>
                         <div className={style.payment_item}>
-                            <input   type="checkbox" onChange={handleChange} name="payment_method" value="check" id="" />
+                            <input   type="checkbox" onChange={handleChange} name="payment_method" value="check" id="payment" />
                             <label htmlFor="CHECK PAYMENTS">CHECK PAYMENTS</label>
                         </div>
                         <div className={style.payment_item}>
-                            <input onChange={handleChange} name="payment_method" value="online" type="checkbox"  id="" />
+                            <input onChange={handleChange} name="payment_method" value="online" type="checkbox"  id="payment" />
                             <label htmlFor="">CASH ON DELIVERY</label>
                         </div>
 

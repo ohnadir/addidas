@@ -7,7 +7,7 @@ const CartProductList = () => {
     const products = [
         {
             "name" : "Sneakers",
-            "price" : 14.00,
+            "price" : 14,
             "quantity" : 2,
             "subtotal" : 14 * 2
         }
