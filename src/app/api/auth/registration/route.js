@@ -1,6 +1,6 @@
 import User from "../../../../models/User"
 import connect from "@/utils/db";
-import { NextResponse } from "next/server";
+import bcrypt from "bcrypt";
 
 export const POST = async (request) => {
     
@@ -8,10 +8,11 @@ export const POST = async (request) => {
     await connect();
    
     try {
-        const user = await User.create({name, email, password });
+        const hash_password = bcrypt.hashSync(password, 10);
+        const user = await User.create({name, email, hash_password });
         return new Response(JSON.stringify({
             code : 200,
-            status : "User has been created",
+            status : "Registration Successfully",
             user: user
             
         }));

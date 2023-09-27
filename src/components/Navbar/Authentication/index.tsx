@@ -1,19 +1,43 @@
-import React, { MouseEventHandler, useState } from 'react'
+import React, { MouseEventHandler, useEffect, useState } from 'react'
 import { LuUser } from 'react-icons/lu';
 import { RiCloseLine } from 'react-icons/ri';
 import { BsGoogle, BsFacebook } from 'react-icons/bs';
-import style from "./Authentication.module.scss"
+import style from "./Authentication.module.scss";
+import { message } from 'antd';
+import { register, login } from "../../../Redux/actions/users"
+import { useAppDispatch, useAppSelector } from "../../../Redux/hooks"
 
 type AuthType = {
     name?: string;
     email?: string;
     password?: string;
 }
-const Authentication = () => {
+const Authentication: React.FC = () => {
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [Switch, setSwitch] = useState<boolean>(false);
-    const [auth, setAuth] = useState<AuthType | null>(null)
+    const [auth, setAuth] = useState<AuthType | null>(null);
+    const [messageApi, contextHolder] = message.useMessage();
+    const dispatch = useAppDispatch();
+    const {  user, messages, isAuthenticated, error } = useAppSelector((state) => state.auth);
+    console.log(user)
+    useEffect(() => {
+        if (messages === "Login Successfully") {
+            messageApi.success("Login Successful");
+        }
+        if (messages === "Registration Successfully") {
+            messageApi.success("Registration Successfully");
+        }
+        if (error ) {
+            messageApi.warning(error);
+        }
+        /* setTimeout( ()=>{
+            if(isAuthenticated === true){
+                setOpenModal(false)
+            }
+        },1000) */
+    }, [messages, isAuthenticated, error, messageApi])
     
+
     const handleChange=(e: React.ChangeEvent<HTMLInputElement>)=>{
         setAuth(prev =>({...prev, [e.target.name]:e.target.value}))
     }
@@ -21,46 +45,23 @@ const Authentication = () => {
 
     const handleRegisOnSubmit = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        // console.log(regis)
-        try {
-            const res = await fetch("/api/auth/registration", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(auth)
-            });
-            const data = await res.json();
-            console.log(data)
-        } catch (err : any) {
-            // setError(err);
-            console.log(err);
+        if (auth !== null) {
+            dispatch(register(auth));
         }
     }
     const handleLoginOnSubmit = async(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         e.preventDefault();
-        try {
-            const res = await fetch("/api/auth/login", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(auth),
-            });
-            const data = await res.json();
-            console.log(data)
-        } catch (err: any) {
-            // setError(err);
-            console.log(err);
+        if (auth !== null) {
+            dispatch(login(auth))
         }
     }
     
     return (
         <>
+            {contextHolder}
             <LuUser id="showDetailBtn" className="cursor-pointer" onClick={()=>setOpenModal(true)} size={20} />
-            {
-                
-                <div className={style.modal}
+            
+            <div className={style.modal}
                     style={{opacity: openModal ? 1 : 0, visibility:openModal ? "visible" : "hidden"}}
                 >
                     
@@ -121,8 +122,7 @@ const Authentication = () => {
                                 </div>
                             </form>
                         </div>
-                </div>
-            }
+            </div>
         </>
     )
 }
