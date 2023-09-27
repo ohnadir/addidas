@@ -5,7 +5,8 @@ import { BsGoogle, BsFacebook } from 'react-icons/bs';
 import style from "./Authentication.module.scss";
 import { message } from 'antd';
 import { register, login } from "../../../Redux/actions/users"
-import { useAppDispatch, useAppSelector } from "../../../Redux/hooks"
+import { useAppSelector } from "../../../Redux/hooks"
+import { useDispatch } from 'react-redux';
 
 type AuthType = {
     name?: string;
@@ -17,7 +18,7 @@ const Authentication: React.FC = () => {
     const [Switch, setSwitch] = useState<boolean>(false);
     const [auth, setAuth] = useState<AuthType | null>(null);
     const [messageApi, contextHolder] = message.useMessage();
-    const dispatch = useAppDispatch();
+    const dispatch = useDispatch();
     const {  user, messages, isAuthenticated, error } = useAppSelector((state) => state.auth);
     console.log(user)
     useEffect(() => {

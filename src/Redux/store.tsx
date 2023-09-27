@@ -9,5 +9,5 @@ const reducer = combineReducers({
 const middleware = [thunk];
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(...middleware))) 
 export type RootState = ReturnType<typeof reducer> 
-export type AppDispatch = typeof reducer.dispatch
+// export type AppDispatch = typeof reducer.dispatch
 export default store;
