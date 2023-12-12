@@ -24,7 +24,9 @@ const Product = () => {
                     <li>SHOES</li>
                 </ul>
             </div>
-            <div className="product_size">Product</div>
+            <div className="product_size">
+                
+            </div>
         </div>
     </div>
   )

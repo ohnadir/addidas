@@ -11,7 +11,6 @@ type TypeInterface ={
 
 const Search = ({openSearch, setOpenSearch} : TypeInterface) => {
     const [keyword, setKeyword] = useState<string>("");
-    console.log(keyword)
     return (
         <div>
             <GrSearch onClick={()=>setOpenSearch(true)} className="" size={20} />

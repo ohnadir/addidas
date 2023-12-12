@@ -20,7 +20,6 @@ const Authentication: React.FC = () => {
     const [messageApi, contextHolder] = message.useMessage();
     const dispatch = useDispatch();
     const {  user, messages, isAuthenticated, error } = useAppSelector((state) => state.auth);
-    console.log(user)
     useEffect(() => {
         if (messages === "Login Successfully") {
             messageApi.success("Login Successful");

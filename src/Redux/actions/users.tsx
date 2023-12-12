@@ -54,7 +54,6 @@ export const  login = (auth:AuthType)=> async(dispatch:any)=>{
         }
 
         const { data } = await axios.post('/api/auth/login', auth, config)
-        console.log(data);
         dispatch({
             type: LOGIN_SUCCESS,
             payload: data
